@@ -1,14 +1,14 @@
 const { Router } = require("express");
-const UserModel = require("./apps/models/Users");
+const UserController = require("./apps/controllers/UserController");
+const schemaValidator = require("./apps/middlewares/schemaValidator");
+const userSchema = require("./schema/created.user.schema.json");
 const routes = new Router();
 
 routes.get("/health", (req, res) => {
   res.status(200).json("Servidor on");
 });
 
-routes.get("/users", async (req, res) => {
-  const allUsers = await UserModel.findAll();
-  res.send({ users: allUsers });
-});
+routes.post("/user", schemaValidator(userSchema), UserController.createUser);
+routes.get("/users", UserController.listAllUser);
 
 module.exports = routes;
