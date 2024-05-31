@@ -1,0 +1,8 @@
+# Arquivos de configuração locais
+.env
+
+# Diretório de dependências
+node_modules/
+
+# Arquivos de build
+dist/
