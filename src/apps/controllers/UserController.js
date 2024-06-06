@@ -2,7 +2,7 @@ const Users = require("../models/Users");
 
 class UserController {
   async createUser(req, res) {
-    const verifyUser = Users.findOne({
+    const verifyUser = await Users.findOne({
       where: {
         email: req.body.email,
       },
